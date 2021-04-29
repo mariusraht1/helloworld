@@ -1,0 +1,44 @@
+<html>
+
+<head>
+  <title>electron_autoupdate_example</title>
+</head>
+
+<body>
+  <h1>Hello Update Example!</h1>
+
+  <p id="version"></p>
+
+  <button disabled id="rdy-button" type="button" onClick="ipcRenderer.send('quitAndInstall')">Update Ready</button>
+</body>
+
+<script>
+  const ipcRenderer = require('electron').ipcRenderer;
+
+  const version = document.getElementById('version');
+  ipcRenderer.send('app_version');
+  ipcRenderer.on('app_version', (event, arg) => {
+    ipcRenderer.removeAllListeners('app_version');
+    version.innerText = "Version " + arg.version;
+  });
+
+  ipcRenderer.on('update-downloaded', function (event, text) {
+    console.log('update-downloaded');
+    var container = document.getElementById('rdy-button');
+    container.removeAttribute('disabled');
+  })
+  ipcRenderer.on('update-available', function (event, text) {
+    console.log('update-available')
+  })
+  ipcRenderer.on('error', function (event, text) {
+    console.log('error', text)
+  })
+  ipcRenderer.on('prog-made', function (event, text) {
+    console.log('prog-made')
+  })
+  ipcRenderer.on('update-not-available', function (event, text) {
+    console.log('update-not-available')
+  })
+</script>
+
+</html>

@@ -1,0 +1,34 @@
+{
+  "name": "helloworld",
+  "version": "1.0.11",
+  "description": "An example for the automatic update functionality of electron",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mariusraht2/helloworld.git"
+  },
+  "keywords": [
+    "electron",
+    "example",
+    "autoUpdater",
+    "update",
+    "github"
+  ],
+  "author": "Marius Raht",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mariusraht2/helloworld/issues"
+  },
+  "dependencies": {
+    "electron-updater": "^2.18.2"
+  },
+  "devDependencies": {
+    "electron": "^1.7.10",
+    "electron-builder": "^19.52.1"
+  }
+}
